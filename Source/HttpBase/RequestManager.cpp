@@ -8,3 +8,11 @@
 
 
 
+bool URequestManager::IsValidRequest(URequestObj* RequestObj)
+{
+	if (RequestObj != nullptr)
+	{
+		return (RequestMap.Find(RequestObj->RequestName) != nullptr) ? true : false;
+	}
+	return false;
+}

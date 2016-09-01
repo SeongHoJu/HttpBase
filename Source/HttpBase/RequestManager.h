@@ -22,7 +22,7 @@ struct FRequestWord
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString RequestValue;
 
-	FRequestWord() {}
+	FRequestWord() RequestTitle(TEXT("")), RequestValue(TEXT("")) {}
 
 	void AppendRequest(FString& BaseString)
 	{
@@ -40,6 +40,11 @@ class HTTPBASE_API URequestManager : public UObject
 	GENERATED_BODY()
 
 public:
+
+	UPROPERTY()
+	TMultiMap<FName, FRequestWord> RequestMap;
+
+	virtual bool IsValidRequest(URequestObj* RequestObj);
 
 	template<typename RequestType>
 	RequestType* CreateRequest()
